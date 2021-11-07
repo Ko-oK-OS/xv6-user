@@ -6,8 +6,8 @@
 #include "include/sleeplock.h"
 #include "include/fs.h"
 #include "include/file.h"
-#include "include/user.h"
 #include "include/fcntl.h"
+#include "user.h"
 
 char *argv[] = { "sh", 0 };
 
