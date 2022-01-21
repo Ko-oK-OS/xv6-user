@@ -43,10 +43,11 @@ ls(char *path)
 
   switch(st.type){
   case T_FILE:
-    printf("%s %d %d %l\n", fmtname(path), st.type, st.ino, st.size);
+    printf("path: %s, dev: %d, inum: %d, nlink: %d, size: %l, type: %d\n", fmtname(path), st.dev, st.ino, st.nlink, st.size, st.type);
     break;
 
   case T_DIR:
+    // printf("path: %s, dev: %d, inum: %d, nlink: %d, size: %l, type: %d\n", fmtname(path), st.dev, st.ino, st.nlink, st.size, st.type);
     if(strlen(path) + 1 + DIRSIZ + 1 > sizeof buf){
       printf("ls: path too long\n");
       break;
@@ -55,8 +56,11 @@ ls(char *path)
     p = buf+strlen(buf);
     *p++ = '/';
     while(read(fd, &de, sizeof(de)) == sizeof(de)){
-      if(de.inum == 0)
+      // printf("[User] test.\n");
+      if(de.inum == 0){
+        // printf("[User] Dir Entry inum = 0\n");
         continue;
+      }
       memmove(p, de.name, DIRSIZ);
       p[DIRSIZ] = 0;
       if(stat(buf, &st) < 0){
