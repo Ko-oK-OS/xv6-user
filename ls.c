@@ -56,9 +56,7 @@ ls(char *path)
     p = buf+strlen(buf);
     *p++ = '/';
     while(read(fd, &de, sizeof(de)) == sizeof(de)){
-      // printf("[User] test.\n");
       if(de.inum == 0){
-        // printf("[User] Dir Entry inum = 0\n");
         continue;
       }
       memmove(p, de.name, DIRSIZ);

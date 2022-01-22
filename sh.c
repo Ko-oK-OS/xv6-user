@@ -128,7 +128,7 @@ runcmd(struct cmd *cmd)
       runcmd(bcmd->cmd);
     break;
   }
-  // printf("[User] Child Process Exit.\n");
+  printf("[User] childen process exit.\n");
   exit(0);
 }
 
